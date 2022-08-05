@@ -1,0 +1,10 @@
+body {
+    font-family: 'Inconsolata', monospace;
+    font-size: 40;
+    background-color: white;
+    background: url("/static/images/background.png");
+    background-size:100%;
+    background-position: center;
+    overflow-x:hidden
+}
+

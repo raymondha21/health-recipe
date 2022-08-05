@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Favorites{% endblock %}
+{% block content %}
+<div class="container-fluid contents">
+  <h1 class="text-center m-3 p-3">Favorites</h1>
+  <div class="col d-flex justify-content-center" id="favorites-list">
+
+    {% for recipe in recipes %}
+      <div class="card">
+        <img class="card-img-top cover container-fluid justify-content-center" src="{{recipe.image}}" style="width:max-content">
+        <div class="card-body">
+          <h5 class="card-title">{{recipe.title}}</h5>
+          <div>
+            {% for nutrient in recipe.nutrition.nutrients if (nutrient.name == 'Calories') or (nutrient.name == 'Fat')
+            or (nutrient.name == 'Carbohydrates') or (nutrient.name == 'Protein') %}
+            <p class="card-text">{{ nutrient.name }}: {{ nutrient.amount }}</p>
+            {% endfor %}
+            <p class="card-text"><a href="/recipes/{{recipe.id}}">Go to Recipe</a></p>
+            <p><button class="btn btn-danger btn-sm" id="fav-btn" data-id="{{ recipe.id }}">Remove from favorites</button></p>
+
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endblock %}

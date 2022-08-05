@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+
+    <img class="card-img-top w-75 p-3 img-fluid" src="{{recipe.image}}">
+    <h1>{{ recipe.title }}</h1>
+    {% if user_fav.count(recipe.id) %}
+    <p><button class="btn btn-danger btn-sm" id="fav-btn" data-id="{{ recipe.id }}">Remove from favorites</button></p>
+    {% else %}
+    <p><button class="btn btn-success btn-sm" id="fav-btn" data-id="{{ recipe.id }}">Add to favorites</button></p>
+    {% endif %}
+
+    <h4>Servings: {{ recipe.servings }}</h4>
+    <h5>Nutrition per serving:</h5>
+    {% for nutrient in nutrients if (nutrient.name == 'Calories') or (nutrient.name == 'Fat')  or (nutrient.name == 'Carbohydrates')  or (nutrient.name == 'Protein') %}
+    <p>{{ nutrient.name }}: {{ nutrient.amount }}</p>
+    {% endfor %}
+    <p>Ingredients: </p>
+    <ul>
+      {% for ingredient in ingredients %}
+      <li>{{ ingredient.original }}</li>
+      {% endfor %}
+    </ul>
+    <h5>Instructions: </h5>
+    <p>{{ recipe.instructions }}</p>
+  </div>
+{% endblock %}

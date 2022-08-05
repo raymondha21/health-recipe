@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+
+    <h1>Welcome back {{ user.first_name }}!</h1>
+    
+    <div class="card d-inline-flex justify-content-end">
+      <img class="card-img-top cover container-fluid" src="{{g.user.image_url}}" style="width:18rem">
+      <div class="card-body">
+        <h5 class="card-title">Bio <a class="btn-sm" href="/users/{{ g.user.id }}/edit" style="font-size:small">Edit Profile</a></h5>
+        <div>
+          <p class="card-text">{{g.user.first_name}} {{ g.user.last_name }}</p>
+          {% if g.user.height %}
+          <p class="card-text">Height: {{g.user.height}}" </p>
+          <p class="card-text">Weight: {{g.user.weight}} lbs </p>
+          <p class="card-text">Gender: {{g.user.gender}} </p>
+          <p class="card-text">Age: {{g.user.age}} </p>
+          <p class="card-text">Activity Level: {{ activity }} </p>
+          <p class="card-text">BMR: {{ bmr }} kcal </p>
+          {% else %}
+          <p class="card-text">Height: <a class="btn-sm" href="/users/{{ g.user.id }}/edit" style="font-size:small">N/A</a></p>
+          <p class="card-text">Weight: <a class="btn-sm" href="/users/{{ g.user.id }}/edit" style="font-size:small">N/A</a> </p>
+          <p class="card-text">Gender: <a class="btn-sm" href="/users/{{ g.user.id }}/edit" style="font-size:small">N/A</a> </p>
+          <p class="card-text">Age: <a class="btn-sm" href="/users/{{ g.user.id }}/edit" style="font-size:small">N/A</a></p>
+          <p class="card-text">Activity Level: <a class="btn-sm" href="/users/{{ g.user.id }}/edit" style="font-size:small">N/A</a></p>
+          <p class="card-text">BMR: <a class="btn-sm" href="/users/{{ g.user.id }}/edit" style="font-size:small">N/A</a></p>
+          {% endif %}
+          
+          
+        </div>
+      </div>
+  </div>
+{% endblock %}

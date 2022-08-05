@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <h1>BMR Calculator</h1>
+  <form method="POST" id="bio_form">
+    {{ form.hidden_tag() }}
+
+    {% for field in form if field.widget.input_type != 'hidden' %}
+    {% for error in field.errors %}
+    <span class="text-danger">{{ error }}</span>
+    {% endfor %}
+
+    {{ field(placeholder=field.label.text, class="form-control") }}
+
+    {% endfor %}
+    <button class="btn btn-primary btn-m btn-block mt-2" id="bmr-button">Calculate BMR</button>
+    {% if g.user %}
+    <button class="btn btn-success btn-m btn-block mt-2">Save to profile</button>
+    {% endif %}
+  </form>
+  <div id='bmr-result' class="container">
+  </div>
+</div>
+{% endblock %}
